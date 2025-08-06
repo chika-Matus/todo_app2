@@ -13,9 +13,9 @@
         <strong>状態:</strong>
         <%= todo.completed? ? "完了" : "未完了" %>
       </p>
-      <div>
+      <div style="margin-top: 10px;">
         <%= link_to "編集", edit_todo_path(todo), class: "btn" %>
-        <%= form_with url: todo_path(todo), method: :delete, local: true, style: "display: inline; margin-left: 8px;" do |f| %>
+        <%= form_with url: todo_path(todo), method: :delete, local: true, style: "display: inline;" do |f| %>
           <%= f.submit "削除", class: "btn btn-danger", 
               data: { confirm: "「#{todo.title}」を本当に削除しますか？" } %>
         <% end %>
@@ -24,5 +24,4 @@
   <% end %>
 <% else %>
   <p>TODOがありません。新しいTODOを作成してください。</p>
-<% end %>
 <% end %>
