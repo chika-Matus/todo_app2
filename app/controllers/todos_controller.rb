@@ -1,5 +1,4 @@
 # app/controllers/todos_controller.rb
-# app/controllers/todos_controller.rb
 class TodosController < ApplicationController
   before_action :require_user
   before_action :set_todo, only: [:show, :edit, :update, :destroy]

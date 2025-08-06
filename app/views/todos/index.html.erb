@@ -15,11 +15,14 @@
       </p>
       <div>
         <%= link_to "編集", edit_todo_path(todo), class: "btn" %>
-        <%= link_to "削除", todo_path(todo), method: :delete, 
-            confirm: "本当に削除しますか？", class: "btn btn-danger" %>
+        <%= form_with url: todo_path(todo), method: :delete, local: true, style: "display: inline; margin-left: 8px;" do |f| %>
+          <%= f.submit "削除", class: "btn btn-danger", 
+              data: { confirm: "「#{todo.title}」を本当に削除しますか？" } %>
+        <% end %>
       </div>
     </div>
   <% end %>
 <% else %>
   <p>TODOがありません。新しいTODOを作成してください。</p>
+<% end %>
 <% end %>
