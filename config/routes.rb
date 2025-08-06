@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # ログインしていない場合はログインページにリダイレクト
   root 'sessions#new'
   
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :todos
   

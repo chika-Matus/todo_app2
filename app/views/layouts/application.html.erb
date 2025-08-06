@@ -10,6 +10,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     
+    <!-- Rails UJS for method: :delete support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rails-ujs/5.2.8/rails-ujs.min.js"></script>
+    <script>Rails.start();</script>
+    
     <style>
       body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
       .container { max-width: 800px; margin: 0 auto; }
@@ -35,7 +39,8 @@
           <div>
             <% if logged_in? %>
               こんにちは、<%= current_user.name %>さん！
-              <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-danger" %>
+              <%= link_to "プロフィール", user_path(current_user), class: "btn" %>
+              <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-danger", data: { confirm: "ログアウトしますか？" } %>
             <% else %>
               <%= link_to "ログイン", login_path, class: "btn" %>
               <%= link_to "新規登録", signup_path, class: "btn" %>
