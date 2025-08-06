@@ -1,0 +1,13 @@
+<!-- app/views/todos/show.html.erb -->
+<div class="todo-item <%= 'completed' if @todo.completed %>">
+  <h2><%= @todo.title %></h2>
+  <p><%= @todo.description %></p>
+  <p><strong>状態:</strong> <%= @todo.completed? ? "完了" : "未完了" %></p>
+  
+  <div>
+    <%= link_to "編集", edit_todo_path(@todo), class: "btn" %>
+    <%= link_to "削除", todo_path(@todo), method: :delete, 
+        confirm: "本当に削除しますか？", class: "btn btn-danger" %>
+    <%= link_to "一覧に戻る", todos_path, class: "btn" %>
+  </div>
+</div>

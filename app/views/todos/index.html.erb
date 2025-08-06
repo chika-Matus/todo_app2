@@ -1,0 +1,25 @@
+<!-- app/views/todos/index.html.erb -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+  <h2>TODOリスト</h2>
+  <%= link_to "新しいTODOを作成", new_todo_path, class: "btn" %>
+</div>
+
+<% if @todos.any? %>
+  <% @todos.each do |todo| %>
+    <div class="todo-item <%= 'completed' if todo.completed %>">
+      <h3><%= link_to todo.title, todo_path(todo) %></h3>
+      <p><%= todo.description %></p>
+      <p>
+        <strong>状態:</strong>
+        <%= todo.completed? ? "完了" : "未完了" %>
+      </p>
+      <div>
+        <%= link_to "編集", edit_todo_path(todo), class: "btn" %>
+        <%= link_to "削除", todo_path(todo), method: :delete, 
+            confirm: "本当に削除しますか？", class: "btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>TODOがありません。新しいTODOを作成してください。</p>
+<% end %>
