@@ -49,3 +49,22 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+
+.git
+.gitignore
+README.md
+.env
+.nyc_output
+coverage
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+**/.git
+**/.DS_Store
+**/node_modules
+log/*
+tmp/*
+.byebug_history
+.env.local

@@ -1,0 +1,31 @@
+# Ruby公式イメージを使用
+FROM ruby:3.1
+
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# システムの依存関係をインストール
+RUN apt-get update -qq && apt-get install -y \
+  nodejs \
+  npm \
+  postgresql-client \
+  build-essential \
+  libpq-dev
+
+# GemfileとGemfile.lockをコピー
+COPY Gemfile Gemfile.lock ./
+
+# gemをインストール
+RUN bundle install
+
+# アプリケーションのソースコードをコピー
+COPY . .
+
+# アセットをプリコンパイル（本番環境用）
+RUN RAILS_ENV=production bundle exec rails assets:precompile
+
+# ポート8080を公開（Cloud Runの要件）
+EXPOSE 8080
+
+# Railsサーバーを起動
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "8080"]
