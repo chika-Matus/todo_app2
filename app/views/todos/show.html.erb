@@ -4,10 +4,12 @@
   <p><%= @todo.description %></p>
   <p><strong>状態:</strong> <%= @todo.completed? ? "完了" : "未完了" %></p>
   
-  <div>
+  <div style="margin-top: 15px;">
     <%= link_to "編集", edit_todo_path(@todo), class: "btn" %>
-    <%= link_to "削除", todo_path(@todo), method: :delete, 
-        confirm: "本当に削除しますか？", class: "btn btn-danger" %>
+    <%= form_with url: todo_path(@todo), method: :delete, local: true, style: "display: inline;" do |f| %>
+      <%= f.submit "削除", class: "btn btn-danger", 
+          data: { confirm: "「#{@todo.title}」を本当に削除しますか？" } %>
+    <% end %>
     <%= link_to "一覧に戻る", todos_path, class: "btn" %>
   </div>
 </div>

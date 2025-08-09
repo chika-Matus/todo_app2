@@ -1,0 +1,36 @@
+<!-- app/views/users/edit.html.erb -->
+<h2>プロフィール編集</h2>
+
+<%= form_with model: @user, local: true do |f| %>
+  <% if @user.errors.any? %>
+    <div class="flash alert">
+      <h4><%= pluralize(@user.errors.count, "個") %>のエラーがあります:</h4>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  
+  <div style="margin-top: 20px;">
+    <%= f.submit "更新", class: "btn" %>
+    <%= link_to "キャンセル", user_path(@user), class: "btn btn-danger" %>
+  </div>
+<% end %>
+
+<hr style="margin: 30px 0;">
+
+<h3>パスワード変更</h3>
+<p><strong>注意:</strong> パスワード変更機能は別途実装する必要があります。</p>
+<p>現在は名前とメールアドレスのみ変更可能です。</p>
